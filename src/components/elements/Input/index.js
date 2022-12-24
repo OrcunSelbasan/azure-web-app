@@ -25,12 +25,12 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
-export default function CustomInput({label, isAddress, onChange}) {
+export default function CustomInput({ label, isAddress, onChange }) {
   return (
     <Box
       component="form"
       sx={{
-        "& > :not(style)": { m: 1},
+        "& > :not(style)": { m: 1 },
       }}
       noValidate
       autoComplete="off"

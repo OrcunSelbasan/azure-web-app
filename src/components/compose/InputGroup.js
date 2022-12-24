@@ -1,7 +1,12 @@
 import React from "react";
 import CustomInput from "../elements/Input";
 
-export const InputGroup = ({handleName, handleSurname, handlePhone, handleAddress}) => {
+export const InputGroup = ({
+  handleName,
+  handleSurname,
+  handlePhone,
+  handleAddress,
+}) => {
   return (
     <>
       <div
@@ -17,7 +22,11 @@ export const InputGroup = ({handleName, handleSurname, handlePhone, handleAddres
         <CustomInput onChange={handleSurname} label="Employee Surname" />
         <CustomInput onChange={handlePhone} label="Employee Phone" />
       </div>
-      <CustomInput onChange={handleAddress} label="Employee Address" isAddress={true} />
+      <CustomInput
+        onChange={handleAddress}
+        label="Employee Address"
+        isAddress={true}
+      />
     </>
   );
 };

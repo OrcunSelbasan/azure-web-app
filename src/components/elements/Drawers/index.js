@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import { AddButton, OpenDrawerButton, RemoveButton } from "../Buttons/utils";
 import { InputGroup } from "../../compose/InputGroup";
+import CustomDataTable from "../Tables";
 
 export default function TopDrawer() {
   const [state, setState] = useState({
@@ -15,6 +15,44 @@ export default function TopDrawer() {
   const [surname, setSurname] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [rows, setRows] = useState([
+    {
+      id: 1,
+      EmpSurname: "Snow",
+      EmpName: "Jon",
+      EmpPhone: 35,
+      EmpAddress: "addddressss",
+    },
+    {
+      id: 2,
+      EmpSurname: "Lannister",
+      EmpName: "Cersei",
+      EmpPhone: 42,
+      EmpAddress: "addddressss",
+    },
+    {
+      id: 3,
+      EmpSurname: "Lannister",
+      EmpName: "Jaime",
+      EmpPhone: 45,
+      EmpAddress: "addddressss",
+    },
+    {
+      id: 4,
+      EmpSurname: "Stark",
+      EmpName: "Arya",
+      EmpPhone: 16,
+      EmpAddress: "addddressss",
+    },
+    {
+      id: 5,
+      EmpSurname: "Targaryen",
+      EmpName: "Daenerys",
+      EmpPhone: null,
+      EmpAddress: "addddressss",
+    },
+  ]);
+  const [selectedRows, setSelectedRows] = useState([]);
 
   const handleName = (e) => setName(e.target.value);
   const handleSurname = (e) => setSurname(e.target.value);
@@ -32,21 +70,40 @@ export default function TopDrawer() {
     setState({ ...state, [anchor]: open });
   };
 
-  const addRecord = () => {
-    console.log("ADD", name, surname, address, phone);
+  const addRecord = (rows, name, surname, phone, address) => {
+    if (name && surname && phone && address) {
+      setRows([
+        ...rows,
+        {
+          id: rows.length + 1,
+          EmpName: name,
+          EmpSurname: surname,
+          EmpPhone: phone,
+          EmpAddress: address,
+        },
+      ]);
+      setName("");
+      setSurname("");
+      setPhone("");
+      setAddress("");
+    } else {
+      alert("Fill all of the input fields!");
+    }
   };
 
-  const removeRecord = () => { // * TODO: Get ids from table
-    console.log("REMOVE");
+  const removeRecord = (selectedRowsIds) => {
+    setRows([...rows.filter((row) => !selectedRowsIds.includes(row.id))]);
   };
 
-  const list = (anchor) => (
+  const list = () => (
     <Box sx={{ width: "auto" }} role="presentation">
       <List style={{ display: "flex", flexDirection: "row" }}>
         {[
-          <AddButton onClick={addRecord} />,
-          <RemoveButton onClick={removeRecord} />,
-        ].map((element, index) => (
+          <AddButton
+            onClick={() => addRecord(rows, name, surname, phone, address)}
+          />,
+          <RemoveButton onClick={() => removeRecord(selectedRows)} />,
+        ].map((element) => (
           <ListItem
             style={{ width: 250 }}
             key={element?.type?.name}
@@ -59,6 +116,10 @@ export default function TopDrawer() {
     </Box>
   );
 
+  const onRowsSelectionHandler = (ids) => {
+    setSelectedRows([...ids]);
+  };
+
   return (
     <div>
       <Box style={{ backgroundColor: "#181D31" }}>
@@ -68,6 +129,7 @@ export default function TopDrawer() {
         <Drawer
           anchor={"top"}
           open={state["top"]}
+          onClose={(e, reason) => setState({ ...state, top: false })}
           PaperProps={{
             sx: {
               backgroundColor: "#678983",
@@ -84,6 +146,10 @@ export default function TopDrawer() {
           />
         </Drawer>
       </Box>
+      <CustomDataTable
+        onRowsSelectionHandler={onRowsSelectionHandler}
+        rows={rows}
+      />
     </div>
   );
 }

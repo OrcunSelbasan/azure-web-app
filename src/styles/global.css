@@ -26,23 +26,24 @@ html {
 }
 
 .custom-drawer-button-open {
-  padding-bottom: 150px;
+  padding-bottom: 350px;
   transform: rotate(180deg);
 }
 
-.MuiDataGrid-iconSeparator{
-    display: none !important;
+.MuiDataGrid-iconSeparator {
+  display: none !important;
 }
 
 .MuiDataGrid-sortIcon {
-    color: white;
+  color: white;
 }
 
-.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root{
+.MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
   color: #fff;
 }
 
-.Mui-checked > .MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
+.Mui-checked
+  > .MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium.css-i4bv87-MuiSvgIcon-root {
   color: #678983;
 }
 
@@ -50,9 +51,9 @@ html {
   color: #fff;
 }
 
-
-.MuiDataGrid-root.MuiDataGrid-root--densityStandard.css-1e2bxag-MuiDataGrid-root * {
-  font-family: 'Roboto', sans-serif !important;
+.MuiDataGrid-root.MuiDataGrid-root--densityStandard.css-1e2bxag-MuiDataGrid-root
+  * {
+  font-family: "Roboto", sans-serif !important;
   font-weight: 300;
 }
 
